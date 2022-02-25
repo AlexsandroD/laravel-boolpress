@@ -18,7 +18,14 @@ header {
 }
 
 main {
-  background-color: yellow;
+  background-color: #fafafa;
+}
+
+main img {
+  width: 200px;
+  height: 150px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 main .cards {
@@ -33,10 +40,12 @@ main .cards {
 
 main .cards .card {
   padding: 35px;
+  max-height: 400px;
   background-color: rgba(255, 255, 255, 0.07);
   border-radius: 10px;
   aspect-ratio: 1.2;
   transition: transform 0.3s;
+  box-shadow: 5px 5px 3px -3px #000000;
 }
 
 main .cards .card:hover {
@@ -85,10 +94,15 @@ main .cards .card .icons .icon-right:hover {
 main .cards .card h4 {
   color: black;
   margin: 15px 0px;
+  text-align: center;
 }
 
 main .cards .card p {
   color: black;
   font-size: 0.85rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
