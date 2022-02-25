@@ -7,7 +7,7 @@ import App from './App.vue';
 // aggiungiamo l'import del file router.js
 import router from "./router";
 const app = new Vue({
-    el: '#root',
+    el: '#app',
     render: h => h(App),
 		// aggiungiamo l'oggetto router all'istanza Vue
 		router
