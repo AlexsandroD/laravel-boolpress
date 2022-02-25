@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  height: 80px;
+  background-color: pink;
+}
+
+main {
+  background-color: yellow;
+}
+
+main .cards {
+  margin: auto;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, 32%);
+  -moz-column-gap: 15px;
+       column-gap: 15px;
+  row-gap: 20px;
+}
+
+main .cards .card {
+  padding: 35px;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  aspect-ratio: 1.2;
+  transition: transform 0.3s;
+}
+
+main .cards .card:hover {
+  transform: translateY(-8px);
+}
+
+main .cards .card .icons {
+  display: flex;
+  justify-content: space-between;
+}
+
+main .cards .card .icons .icon-left {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  background-color: #038384;
+  color: #52bbbb;
+}
+
+main .cards .card .icons .icon-right {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  color: #52bbbb;
+  transition: 0.3s ease-in-out;
+}
+
+main .cards .card .icons .icon-right a {
+  color: #52bbbb;
+}
+
+main .cards .card .icons .icon-right:hover {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  color: #59838c;
+  border-radius: 50%;
+  background-color: #038384;
+}
+
+main .cards .card h4 {
+  color: black;
+  margin: 15px 0px;
+}
+
+main .cards .card p {
+  color: black;
+  font-size: 0.85rem;
+}
+
