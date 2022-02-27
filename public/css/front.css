@@ -13,8 +13,9 @@ a {
 }
 
 header {
-  height: 80px;
   background-color: pink;
+  margin-bottom: 20px;
+  padding: 20px;
 }
 
 main {

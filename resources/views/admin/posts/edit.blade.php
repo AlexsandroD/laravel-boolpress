@@ -69,6 +69,17 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                              @enderror
                          </div>
+                         <div class="form-group">
+                            @if($post->imgage != NULL)
+                                <img class="img-thumbnail float-right" src="{{ asset('storage/' . $post->image) }}" alt="{{$post->title}} image">
+                            @endif
+                            <label for="image">Media</label>
+                            <input class="form-control @error('image') is-invalid @enderror" id="image" type="file" name="image" value="{{ old('image', $post->image) }}">
+                            @error('image')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+
                          <button class="btn btn-primary" type="submit">modifica</button>
                          <a class="btn btn-secondary " href="{{ route("posts.index") }}" role="button">Back</a>
                     </form>

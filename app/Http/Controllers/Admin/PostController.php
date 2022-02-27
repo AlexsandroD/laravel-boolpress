@@ -16,7 +16,7 @@ class PostController extends Controller
         "content"=>"required",
         "published" => "sometimes|accepted",
         "category_id"=>"nullable|exists:categories,id",
-        "image" => "nullable|mimes:jpg,jpeg,png,gif,webp|max:2048",
+        "image" => "nullable|mimes:jpg,jpeg,png|max:2048",
         "tags" => "nullable|exists:tags,id"
     ];
     /**
