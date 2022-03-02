@@ -2146,19 +2146,81 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SinglePost",
   data: function data() {
     return {
-      post: {}
+      post: {},
+      formData: {
+        name: "",
+        content: "",
+        post_id: null
+      },
+      commentSent: false,
+      formErrors: {}
     };
   },
+  methods: {
+    addComment: function addComment() {
+      var _this = this;
+
+      axios.post("/api/comments", this.formData).then(function (response) {
+        _this.formData.name = "";
+        _this.formData.content = "";
+        _this.commentSent = true;
+      }); // .catch((error) => {
+      //     this.formErrors = error.response.data.errors;
+      //     this.commentSent = false;
+      // });
+    }
+  },
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     axios.get("/api/posts/".concat(this.$route.params.slug)).then(function (response) {
-      _this.post = response.data;
-    });
+      _this2.post = response.data;
+      _this2.formData.post_id = _this2.post.id;
+    }); // .catch((error) => {
+    //     this.$router.push({ name: "page-404" });
+    // });
   }
 });
 
@@ -3640,16 +3702,101 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h1", [_vm._v("\n        " + _vm._s(_vm.post.title) + "\n    ")]),
-    _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.post.content))]),
+    _c("h1", [_vm._v(_vm._s(_vm.post.title))]),
     _vm._v(" "),
     _c("img", {
       attrs: { src: "/storage/" + _vm.post.image, alt: _vm.post.title },
     }),
+    _vm._v(" "),
+    _c("p", [_vm._v("\n        " + _vm._s(_vm.post.content) + "\n    ")]),
+    _vm._v(" "),
+    _c("div", [
+      _c("h3", [_vm._v("Lascia un commento")]),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          on: {
+            submit: function ($event) {
+              $event.preventDefault()
+              return _vm.addComment()
+            },
+          },
+        },
+        [
+          _c("div", [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.formData.name,
+                  expression: "formData.name",
+                },
+              ],
+              attrs: {
+                type: "text",
+                id: "name",
+                placeholder: "inserisci un nome",
+              },
+              domProps: { value: _vm.formData.name },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.formData, "name", $event.target.value)
+                },
+              },
+            }),
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.formData.content,
+                  expression: "formData.content",
+                },
+              ],
+              attrs: {
+                id: "content",
+                cols: "30",
+                rows: "10",
+                placeholder: "inserisci un commento",
+              },
+              domProps: { value: _vm.formData.content },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.formData, "content", $event.target.value)
+                },
+              },
+            }),
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+        ]
+      ),
+    ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("button", { attrs: { type: "submit" } }, [
+        _vm._v("Aggiungi commento"),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 
