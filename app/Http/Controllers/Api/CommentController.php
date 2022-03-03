@@ -13,9 +13,9 @@ class CommentController extends Controller
         $data = $request->all();
 
         $validator= Validator::make($data,[
-            'name' => 'nullable|sting|max:50',
-            'content' => 'string|required',
-            'post_id' => 'exist:post,id',
+            'name' => 'nullable|string|max:50',
+            'content' => 'required|string',
+            'post_id' => 'required|exists:posts,id'
         ]);
 
         if($validator->fails()) {
@@ -34,8 +34,11 @@ class CommentController extends Controller
         $newComment->save();
 
         return response()->json([
-            "success" =>true,
+            "success" =>true
         ]);
 
     }
+
 }
+
+

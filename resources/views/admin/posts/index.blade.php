@@ -56,6 +56,14 @@
                                         @endif
 
                                     </td>
+                                    <td>
+                                        @php
+                                            $comments_not_approved = $post->comments->filter(function($value,$key){
+                                                return $value->approved == 0;
+                                            })
+                                        @endphp
+                                        {{ count($comments_not_approved) }}
+                                    </td>
                                     <td class="text-center">
                                         <a class="btn btn-primary" style=" min-width: 80px" href="{{ route("posts.show",$post->id) }}" role="button">Viualizza</a>
                                     </td>

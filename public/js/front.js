@@ -2184,6 +2184,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SinglePost",
   data: function data() {
@@ -2206,10 +2221,11 @@ __webpack_require__.r(__webpack_exports__);
         _this.formData.name = "";
         _this.formData.content = "";
         _this.commentSent = true;
-      }); // .catch((error) => {
-      //     this.formErrors = error.response.data.errors;
-      //     this.commentSent = false;
-      // });
+        console.log(response.data);
+      })["catch"](function (error) {
+        _this.formErrors = error.response.data.errors;
+        _this.commentSent = false;
+      });
     }
   },
   created: function created() {
@@ -2218,9 +2234,11 @@ __webpack_require__.r(__webpack_exports__);
     axios.get("/api/posts/".concat(this.$route.params.slug)).then(function (response) {
       _this2.post = response.data;
       _this2.formData.post_id = _this2.post.id;
-    }); // .catch((error) => {
-    //     this.$router.push({ name: "page-404" });
-    // });
+    })["catch"](function (error) {
+      _this2.$router.push({
+        name: "page-404"
+      });
+    });
   }
 });
 
@@ -3777,10 +3795,68 @@ var render = function () {
                 },
               },
             }),
+            _vm._v(" "),
+            _vm.formErrors.content
+              ? _c(
+                  "div",
+                  { staticStyle: { background: "red", color: "white" } },
+                  [
+                    _c(
+                      "ul",
+                      _vm._l(_vm.formErrors.content, function (error, index) {
+                        return _c("li", { key: index }, [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(error) +
+                              "\n                        "
+                          ),
+                        ])
+                      }),
+                      0
+                    ),
+                  ]
+                )
+              : _vm._e(),
           ]),
           _vm._v(" "),
           _vm._m(0),
         ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.commentSent,
+              expression: "commentSent",
+            },
+          ],
+          staticStyle: {
+            background: "green",
+            color: "white",
+            "text-align": "center",
+          },
+        },
+        [_vm._v("\n            Commento in fase di approvazione\n        ")]
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c("h3", [_vm._v("Commenti")]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        _vm._l(_vm.post.comments, function (comment) {
+          return _c("li", { key: comment.id }, [
+            _c("h4", [_vm._v(_vm._s(comment.name))]),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(comment.content))]),
+          ])
+        }),
+        0
       ),
     ]),
   ])
